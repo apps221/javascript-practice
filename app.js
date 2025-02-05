@@ -95,3 +95,91 @@ function loggedInAndSubscribed (string1, string2) {
     return false;
 }
 console.log(loggedInAndSubscribed("LOGGED_IN", "SUBSCRIBED"));
+//function checks if value is truthy and returns num1 if it is
+function filterOutTruthy (num1, num2) {
+    if (!num1) { //checks if !num1 == true, because in order for if statement to run it has to be equal to true
+        return num1;
+    }
+    else {
+        return num2;
+    }
+}
+//return length of array
+
+function returnLength (arr) {
+    return arr.length;
+}
+//get last element from array
+function lastElement (arr) {
+    return arr[arr.length-1];
+}
+//get sum of numbers of array 
+function sumArr (arr) {
+    let sum = 0;
+    for (let i = 0; i < arr.length; i++ ) {
+        sum = sum + arr[i];
+    }
+    return sum;
+}
+//return max element of array
+function getMax (arr) {
+    let max = arr[0];
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] > max) {
+            max = arr[i];
+    }
+    else {
+        return max;
+    }
+}
+}
+//turn all elements of array to 0s
+function convertToZeros (arr) {
+    let arrayZeros = [];
+    for (let i = 0; i < arr.length; i++) {
+        arrayZeros[i] = 0;
+    }
+    return arrayZeros;
+}
+convertToZeros([2, 3, 4])
+
+//remove all apples from array
+function removeApples (arr) {
+    let noApples = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] !== "Apple") {
+            noApples.push(arr[i]); //adds element to end of noApples
+        }
+    }
+    return noApples;
+}
+//returns all elements that are not apples
+function removeApples2 (arr) {
+    return arr.filter(elem => elem !== "Apple")
+}
+console.log(removeApples2(["Apple", "Orange", "Banana", "Apple"]))
+
+function convertToBoolean (arr) {
+    //return arr.map(elem => !!elem);
+    for (let i = 0; i < arr.length; i++) {
+        arr[i] = !!arr[i];
+    }
+    return arr;
+}
+console.log(convertToBoolean([500, 0, "David"]))
+//filter out all posts by single user using promises
+async function postsByUser(userId) {
+    const promise = await fetch("https://jsonplaceholder.typicode.com/posts");
+    const result = await promise.json();
+    const posts = result.filter(element => element.userId === userId)
+  //  console.log(posts);
+}
+postsByUser(6);
+//return the first 6 incomplete todos
+async function firstSixIncomplete() {
+    const promise = await fetch("https://jsonplaceholder.typicode.com/todos");
+    const result = await promise.json();
+    const incompleteTasks = result.filter(elem => !elem.completed).slice(0, 6);
+    console.log(incompleteTasks);
+}
+firstSixIncomplete();
